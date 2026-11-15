@@ -6,7 +6,7 @@ Student Details
 * **Email:** umohjerryjoseph@gmail.com
 * **Course Code:** COS 106 - Introduction to Web Technologies
 
-Project Overview
+## Project Overview
 This project is a fully responsive, multi-page personal portfolio and interactive academic management platform. Built completely from scratch using semantic HTML5, advanced CSS3 (Flexbox, CSS Grid, custom variables, and @keyframes motion animations), and vanilla JavaScript (ES6+), the application bridges executive operations management expertise with modern software engineering principles.
 
 Live Deployment & Repository Links
