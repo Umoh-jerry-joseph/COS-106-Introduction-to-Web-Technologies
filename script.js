@@ -9,7 +9,65 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // --- 2. ACADEMIC PLANNER LOGIC ---
+    // --- 2. DARK MODE TOGGLE ---
+    const themeToggleBtn = document.getElementById('themeToggleBtn');
+    const currentTheme = localStorage.getItem('theme');
+
+    if (currentTheme === 'dark') {
+        document.body.classList.add('dark-mode');
+        if (themeToggleBtn) themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+    }
+
+    if (themeToggleBtn) {
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-mode');
+            let theme = 'light';
+            if (document.body.classList.contains('dark-mode')) {
+                theme = 'dark';
+                themeToggleBtn.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                themeToggleBtn.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+            localStorage.setItem('theme', theme);
+        });
+    }
+
+    // --- 3. LIVE ABUJA TIME WIDGET ---
+    const liveClock = document.getElementById('liveClock');
+    if (liveClock) {
+        function updateAbujaTime() {
+            const options = { timeZone: 'Africa/Lagos', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true };
+            const timeString = new Intl.DateTimeFormat('en-US', options).format(new Date());
+            liveClock.innerHTML = `<i class="fas fa-clock"></i> Abuja, Nigeria 🇳🇬: ${timeString}`;
+        }
+        updateAbujaTime();
+        setInterval(updateAbujaTime, 1000);
+    }
+
+    // --- 4. PROJECT CATEGORY FILTERING ---
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    const projectCards = document.querySelectorAll('.project-card');
+
+    if (filterBtns.length > 0) {
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+                const filter = btn.getAttribute('data-filter');
+
+                projectCards.forEach(card => {
+                    const category = card.getAttribute('data-category');
+                    if (filter === 'all' || category === filter) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    }
+
+    // --- 5. ACADEMIC PLANNER LOGIC ---
     const taskInput = document.getElementById('taskInput');
     const addTaskBtn = document.getElementById('addTaskBtn');
     const taskList = document.getElementById('taskList');
@@ -34,7 +92,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 const li = document.createElement('li');
                 li.className = `task-item ${task.completed ? 'completed' : ''}`;
                 
-                // Escape task text for safe inline JS
                 const safeText = task.text.replace(/'/g, "\\'");
 
                 li.innerHTML = `
@@ -79,7 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
             renderTasks();
         };
 
-        // Google Calendar Event Generator Function
         window.addToGoogleCalendar = function(taskText) {
             const title = encodeURIComponent(taskText);
             const details = encodeURIComponent("Scheduled task from Jerry Joseph Umoh's Academic Planner (Miva Open University COS 106).");
@@ -92,7 +148,7 @@ document.addEventListener('DOMContentLoaded', () => {
         renderTasks();
     }
 
-    // --- 3. CONTACT FORM VALIDATION LOGIC ---
+    // --- 6. CONTACT FORM VALIDATION LOGIC ---
     const contactForm = document.getElementById('contactForm');
     if (contactForm) {
         const nameInput = document.getElementById('name');

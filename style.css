@@ -515,3 +515,116 @@ footer {
     color: #1a73e8;
     transform: scale(1.1);
 }
+
+/* --- NEW FEATURE ADDITIONS STYLING --- */
+
+/* Top Social & Time Bar */
+.top-utility-bar {
+    background-color: var(--primary-color);
+    color: var(--white);
+    padding: 0.5rem 8%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1001;
+}
+
+.utility-left, .utility-right {
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.utility-right a {
+    color: var(--white);
+    text-decoration: none;
+    transition: var(--transition);
+}
+
+.utility-right a:hover {
+    color: var(--accent-color);
+}
+
+/* Adjust Header Position for Utility Bar */
+header {
+    top: 33px !important; /* Positioned right below the utility bar */
+}
+
+main {
+    margin-top: 115px !important;
+}
+
+/* Dark Mode Theme Variables */
+body.dark-mode {
+    --primary-color: #e2e8f0;
+    --secondary-color: #94a3b8;
+    --bg-light: #0f172a;
+    --white: #1e293b;
+    --text-dark: #f8fafc;
+    --gray: #94a3b8;
+}
+
+/* Dark Mode Toggle Button */
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    color: var(--text-dark);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.3rem 0.6rem;
+    border-radius: 50%;
+    transition: var(--transition);
+    margin-left: 1rem;
+}
+
+.theme-toggle-btn:hover {
+    background-color: rgba(238, 108, 77, 0.1);
+    color: var(--accent-color);
+}
+
+/* Project Filter Category Buttons */
+.project-filters {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+}
+
+.filter-btn {
+    background-color: var(--white);
+    color: var(--primary-color);
+    border: 2px solid var(--secondary-color);
+    padding: 0.5rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+}
+
+.filter-btn.active, 
+.filter-btn:hover {
+    background-color: var(--accent-color);
+    color: var(--white);
+    border-color: var(--accent-color);
+}
+
+/* Responsive adjustment for top utility bar on mobile */
+@media (max-width: 768px) {
+    .top-utility-bar {
+        flex-direction: column;
+        gap: 0.3rem;
+        text-align: center;
+        padding: 0.4rem 4%;
+    }
+    header {
+        top: 55px !important;
+    }
+    main {
+        margin-top: 135px !important;
+    }
+}
