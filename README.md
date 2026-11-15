@@ -12,7 +12,7 @@ This project is a fully responsive, multi-page personal portfolio and interactiv
 
 ## Live Deployment & Repository Links
 
-* **Live Website URL:** [View Live Portfolio](https://jerry-joseph-portfolio.vercel.app/)
+* **Live Website URL:** [View Live Portfolio](https://jerry-joseph-umoh-portfolio.vercel.app/index.html))
 * **Source Code Repository:** [GitHub Repository](https://github.com/Umoh-jerry-joseph/COS-106-Introduction-to-Web-Technologies)
 
 ---
