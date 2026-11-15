@@ -33,9 +33,16 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (task.completed) completed++;
                 const li = document.createElement('li');
                 li.className = `task-item ${task.completed ? 'completed' : ''}`;
+                
+                // Escape task text for safe inline JS
+                const safeText = task.text.replace(/'/g, "\\'");
+
                 li.innerHTML = `
                     <span class="task-text" onclick="toggleTask(${task.id})">${task.text}</span>
                     <div class="task-actions">
+                        <button class="calendar-btn" onclick="addToGoogleCalendar('${safeText}')" title="Add to Google Calendar">
+                            <i class="fas fa-calendar-plus"></i>
+                        </button>
                         <button class="complete-btn" onclick="toggleTask(${task.id})" title="Toggle Complete">
                             <i class="fas ${task.completed ? 'fa-check-square' : 'fa-square'}"></i>
                         </button>
@@ -70,6 +77,14 @@ document.addEventListener('DOMContentLoaded', () => {
         window.deleteTask = function(id) {
             tasks = tasks.filter(task => task.id !== id);
             renderTasks();
+        };
+
+        // Google Calendar Event Generator Function
+        window.addToGoogleCalendar = function(taskText) {
+            const title = encodeURIComponent(taskText);
+            const details = encodeURIComponent("Scheduled task from Jerry Joseph Umoh's Academic Planner (Miva Open University COS 106).");
+            const googleCalendarUrl = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&details=${details}`;
+            window.open(googleCalendarUrl, '_blank');
         };
 
         addTaskBtn.addEventListener('click', addTask);
