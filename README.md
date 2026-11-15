@@ -1,10 +1,10 @@
 COS 106: Practical Term Project - Student Portfolio & Academic Management Platform
 
 Student Details
-Name: Jerry Joseph Umoh
-Institution: Miva Open University
-Email: umohjerryjoseph@gmail.com
-Course Code: COS 106 - Introduction to Web Technologies
+* **Name:** Jerry Joseph Umoh
+* **Institution:** Miva Open University
+* **Email:** umohjerryjoseph@gmail.com
+* **Course Code:** COS 106 - Introduction to Web Technologies
 
 Project Overview
 This project is a fully responsive, multi-page personal portfolio and interactive academic management platform. Built completely from scratch using semantic HTML5, advanced CSS3 (Flexbox, CSS Grid, custom variables, and @keyframes motion animations), and vanilla JavaScript (ES6+), the application bridges executive operations management expertise with modern software engineering principles.
