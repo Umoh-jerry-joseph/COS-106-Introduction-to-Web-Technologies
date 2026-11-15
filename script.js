@@ -207,3 +207,67 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// --- SCROLL REVEAL ANIMATION OBSERVER ---
+    const revealElements = document.querySelectorAll('.about-card, .project-card, .exp-card, .planner-container, .contact-container');
+    
+    // Add reveal class initially
+    revealElements.forEach(el => el.classList.add('reveal-on-scroll'));
+
+    const revealOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('revealed');
+            }
+        });
+    }, { threshold: 0.15 });
+
+    revealElements.forEach(el => revealOnScroll.observe(el));
+
+    // --- BIGBITE GRILL QUICK INQUIRY MODAL ---
+    // You can attach this to any button on your projects page
+    window.openBigBiteModal = function() {
+        let modal = document.getElementById('bigbiteModal');
+        if (!modal) {
+            const modalDiv = document.createElement('div');
+            modalDiv.id = 'bigbiteModal';
+            modalDiv.className = 'modal-overlay';
+            modalDiv.innerHTML = `
+                <div class="modal-content">
+                    <span class="close-modal" onclick="closeBigBiteModal()">&times;</span>
+                    <h3 style="color: var(--primary-color); margin-bottom: 0.5rem;"><i class="fas fa-fire"></i> BigBite Grill Inquiry</h3>
+                    <p style="color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem;">Order or request catering from our Abuja outlets (Paulad Sports Centre, Kubwa FO1 / White House, Dutse).</p>
+                    <div class="form-group">
+                        <label>Your Name / Event</label>
+                        <input type="text" id="modalName" placeholder="Enter your name">
+                    </div>
+                    <div class="form-group">
+                        <label>Phone Number (Abuja)</label>
+                        <input type="tel" id="modalPhone" placeholder="09034006404">
+                    </div>
+                    <button class="btn primary-btn" style="width: 100%;" onclick="submitModalInquiry()">Send Quick Inquiry</button>
+                    <p id="modalSuccess" style="color: var(--success); font-weight: 600; text-align: center; margin-top: 1rem;"></p>
+                </div>
+            `;
+            document.body.appendChild(modalDiv);
+            modal = modalDiv;
+        }
+        modal.style.display = 'flex';
+    };
+
+    window.closeBigBiteModal = function() {
+        const modal = document.getElementById('bigbiteModal');
+        if (modal) modal.style.display = 'none';
+    };
+
+    window.submitModalInquiry = function() {
+        const name = document.getElementById('modalName').value.trim();
+        const phone = document.getElementById('modalPhone').value.trim();
+        const success = document.getElementById('modalSuccess');
+        if(name && phone) {
+            success.textContent = "Thank you! Inquiry received for BigBite Grill Abuja.";
+            setTimeout(() => { closeBigBiteModal(); }, 2000);
+        } else {
+            alert('Please fill in your name and phone number.');
+        }
+    };
